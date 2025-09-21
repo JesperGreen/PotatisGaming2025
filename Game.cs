@@ -21,6 +21,8 @@ namespace PotatisGaming2025
 
         static string[] enemyNames = { "Rat-Potato", "Goblin-Potato", "Skeleton-Potato", "Bandit-Potato", "Zombie-Potato", "Alien-Potato", "Necromancy-Potato"};
         static Random rnd = new Random();
+        
+        // Start-Meny och spel-loop
         public static void StartGame()
         {
             Console.WriteLine("=== Potatis-Äventyr! ===");
@@ -92,7 +94,7 @@ namespace PotatisGaming2025
                 }
             }
         }
-
+        // Metoder för att spela, vila och visa status
         static void ShowStatus() 
         {
             Console.WriteLine("\n--- Din status ---");
@@ -143,6 +145,30 @@ namespace PotatisGaming2025
                 Console.WriteLine("2. Vila");
                 Console.WriteLine("3. Spring");
                 string action = Console.ReadLine();
+
+                if (action == "1") 
+                {
+                    if (playerClass == "Potatis-Mage")
+                    {
+                        int manaCost = 20;
+                        if (playerMana >= manaCost)
+                        {
+                            playerMana -= manaCost;
+                            enemyHP -= playerDamage;
+                            Console.WriteLine($"Du kastar Potatobolt och använder {manaCost} mana. Fiendens HP är nu {enemyHP}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Du har inte tillräckligt med mana för att attackera. Unlucky!");
+                            continue;
+                        }
+                    }
+                    else 
+                    {
+                        enemyHP -= playerDamage;
+                        Console.WriteLine($"Du kastar en fick-potatis på fienden. Fiendens HP är nu {enemyHP}");
+                    }
+                }
             }
         }
     }
