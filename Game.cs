@@ -15,10 +15,12 @@ namespace PotatisGaming2025
         static int playerHP;
         static int playerMaxHP;
         static int playerMana;
+        static int playerMaxMana;
         static int playerDamage;
         static int playerGold;
 
-        static string[] enemyNames = { "Potato-Rat", "Potato-Goblin", "Potato-Skeleton", "Potato-Bandit" };
+        static string[] enemyNames = { "Rat-Potato", "Goblin-Potato", "Skeleton-Potato", "Bandit-Potato", "Zombie-Potato", "Alien-Potato", "Necromancy-Potato"};
+        static Random rnd = new Random();
         public static void StartGame()
         {
             Console.WriteLine("=== Potatis-Äventyr! ===");
@@ -37,13 +39,14 @@ namespace PotatisGaming2025
                 playerHP = playerMaxHP = 150;
                 playerDamage = 15;
                 playerMana = 0;
+                playerMaxMana = 0;
             }
             else if (input == "2") 
             {
                 playerClass = "Potatis-Mage";
                 playerHP = playerMaxHP = 100;
-                playerDamage = 20;
-                playerMana = 100;
+                playerDamage = 25;
+                playerMana = playerMaxMana = 100;
             }
             else
             {
@@ -96,7 +99,8 @@ namespace PotatisGaming2025
             Console.WriteLine($"Namn: {playerName}");
             Console.WriteLine($"Klass: {playerClass}");
             Console.WriteLine($"HP: {playerHP}/{playerMaxHP}");
-            Console.WriteLine($"Mana: {playerMana}");
+            if (playerMaxMana > 0)
+                Console.WriteLine($"Mana: {playerMana}/{playerMaxMana}");
             Console.WriteLine($"Skada: {playerDamage}");
             Console.WriteLine($"Guld: {playerGold}");
         }
@@ -105,13 +109,41 @@ namespace PotatisGaming2025
         {
             int heal = 25;
             playerHP += heal;
+            
             if (playerHP > playerMaxHP) playerHP = playerMaxHP;
-            Console.WriteLine($"Du vilar och regenererar {heal} HP. Ditt nuvarande HP är: {playerHP}/{playerMaxHP}");
+            if (playerMaxMana > 0)
+            {
+                int manaRegen = 25;
+                playerMana += manaRegen;
+                if (playerMana > playerMaxMana) playerMana = playerMaxMana;
+                Console.WriteLine($"\nDu vilar och återhämtar {heal} HP och {manaRegen} mana.");
+            }
+            else 
+            {
+                Console.WriteLine($"\nDu vilar och regenererar {heal} HP.");
+            }
+
+            Console.WriteLine($"Ditt nuvarande HP är: {playerHP}/{playerMaxHP}");
+            if (playerMaxMana > 0)
+                Console.WriteLine($"Din nuvarande mana är: {playerMana}/{playerMaxMana}");
         }
 
         static void StartAdventure() 
         {
+            string enemyName = enemyNames[rnd.Next(enemyNames.Length)];
+            int enemyHP = rnd.Next(25, 80);
+            int enemyDamage = rnd.Next(5, 15);
+            int enemyGold = rnd.Next(1, 20);
 
+            bool fighting = true;
+            while (fighting && playerHP > 0 && enemyHP > 0) 
+            {
+                Console.WriteLine("\n Vad vill du göra?");
+                Console.WriteLine("1. Attackera");
+                Console.WriteLine("2. Vila");
+                Console.WriteLine("3. Spring");
+                string action = Console.ReadLine();
+            }
         }
     }
 }
