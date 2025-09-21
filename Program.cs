@@ -4,7 +4,9 @@ namespace PotatisGaming2025
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Potatis Gaming 2025, wow!");
+            Game.StartGame();
+            Game.GameLoop();
+            Console.WriteLine("\nGG WP!");
         }
     }
 }
