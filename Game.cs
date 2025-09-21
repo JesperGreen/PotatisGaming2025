@@ -32,16 +32,25 @@ namespace PotatisGaming2025
 
             if (input == "1")
             {
-
+                playerClass = "Potatis-Warrior";
+                playerHP = playerMaxHP = 150;
+                playerDamage = 15;
+                playerMana = 0;
             }
             else if (input == "2") 
             {
-
+                playerClass = "Potatis-Mage";
+                playerHP = playerMaxHP = 100;
+                playerDamage = 20;
+                playerMana = 100;
             }
             else
             {
                 Console.WriteLine("Wrong choice, noob.");
             }
+
+            playerGold = 0;
+            Console.WriteLine($"\nVälkommen {playerName} the {playerClass}!");
         }
 
         public static void GameLoop()
