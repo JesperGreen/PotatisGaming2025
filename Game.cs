@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,52 @@ namespace PotatisGaming2025
         }
 
         public static void GameLoop()
+        {
+            bool alive = true;
+
+            while (alive && playerHP > 0) 
+            {
+                Console.WriteLine("\n=== Meny ===");
+                Console.WriteLine("1. Gå på äventyr");
+                Console.WriteLine("2. Vila");
+                Console.WriteLine("3. Status");
+                Console.WriteLine("4. Avsluta");
+                Console.Write("Välj ett alternativ: ");
+                string choice = Console.ReadLine();
+
+                switch (choice) 
+                {
+                    case "1":
+                        StartAdventure();
+                        break;
+                    case "2":
+                        Rest();
+                        break;
+                    case "3":
+                        ShowStatus();
+                        break;
+                    case "4":
+                        alive = false;
+                        break;
+                    default:
+                        Console.WriteLine("Wrong choice, noob.");
+                        break;
+
+                }
+            }
+        }
+
+        static void ShowStatus() 
+        {
+
+        }
+
+        static void Rest() 
+        {
+
+        }
+
+        static void StartAdventure() 
         {
 
         }
