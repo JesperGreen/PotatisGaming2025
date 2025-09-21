@@ -103,7 +103,10 @@ namespace PotatisGaming2025
 
         static void Rest() 
         {
-
+            int heal = 25;
+            playerHP += heal;
+            if (playerHP > playerMaxHP) playerHP = playerMaxHP;
+            Console.WriteLine($"Du vilar och regenererar {heal} HP. Ditt nuvarande HP är: {playerHP}/{playerMaxHP}");
         }
 
         static void StartAdventure() 
