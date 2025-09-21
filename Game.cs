@@ -92,7 +92,13 @@ namespace PotatisGaming2025
 
         static void ShowStatus() 
         {
-
+            Console.WriteLine("\n--- Din status ---");
+            Console.WriteLine($"Namn: {playerName}");
+            Console.WriteLine($"Klass: {playerClass}");
+            Console.WriteLine($"HP: {playerHP}/{playerMaxHP}");
+            Console.WriteLine($"Mana: {playerMana}");
+            Console.WriteLine($"Skada: {playerDamage}");
+            Console.WriteLine($"Guld: {playerGold}");
         }
 
         static void Rest() 
