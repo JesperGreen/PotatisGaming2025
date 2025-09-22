@@ -48,7 +48,7 @@ namespace PotatisGaming2025
                 playerClass = "Potatis-Mage";
                 playerHP = playerMaxHP = 100;
                 playerDamage = 25;
-                playerMana = playerMaxMana = 100;
+                playerMana = playerMaxMana = 200;
             }
             else
             {
@@ -146,7 +146,7 @@ namespace PotatisGaming2025
                 Console.WriteLine("3. Spring");
                 string action = Console.ReadLine();
 
-                if (action == "1") 
+                if (action == "1")
                 {
                     if (playerClass == "Potatis-Mage")
                     {
@@ -155,7 +155,7 @@ namespace PotatisGaming2025
                         {
                             playerMana -= manaCost;
                             enemyHP -= playerDamage;
-                            Console.WriteLine($"Du kastar Potatobolt och använder {manaCost} mana. Fiendens HP är nu {enemyHP}");
+                            Console.WriteLine($"Du kastar Potatobolt och använder {manaCost} mana. Fiendens HP är nu {enemyHP}.");
                         }
                         else
                         {
@@ -163,12 +163,41 @@ namespace PotatisGaming2025
                             continue;
                         }
                     }
-                    else 
+                    else
                     {
                         enemyHP -= playerDamage;
-                        Console.WriteLine($"Du kastar en fick-potatis på fienden. Fiendens HP är nu {enemyHP}");
+                        Console.WriteLine($"Du kastar en fick-potatis på fienden. Fiendens HP är nu {enemyHP}.");
+                    }
+                    if (enemyHP > 0)
+                    {
+                        playerHP -= enemyDamage;
+                        Console.WriteLine($"{enemyName} attackerar och gör {enemyDamage} skada. Ditt HP är nu {playerHP}/{playerMaxHP}.");
                     }
                 }
+                else if (action == "2")
+                {
+                    Rest();
+                    fighting = false;
+                }
+                else if (action == "3")
+                {
+                    Console.WriteLine("Du springer iväg/utför en taktisk reträtt.");
+                    fighting = false;
+                }
+                else 
+                {
+                    Console.WriteLine("Fel val, försökte du välja ett annat alternativ?");
+                }
+            }
+            if (enemyHP <= 0)
+            {
+                Console.WriteLine($"Du besegrade {enemyName}!");
+                playerGold += enemyGold;
+                Console.WriteLine($"Du lootar {enemyGold} guld. Totalt guld: {playerGold}");
+            }
+            else if (playerHP <= 0) 
+            {
+                Console.WriteLine("NOOB DOWN. Game over, better luck next time!");
             }
         }
     }
