@@ -70,7 +70,7 @@ namespace PotatisGaming2025
                 Console.WriteLine("2. Vila");
                 Console.WriteLine("3. Status");
                 Console.WriteLine("4. Avsluta");
-                Console.Write("Välj ett alternativ: ");
+                Console.Write("\nVälj ett alternativ: ");
                 string choice = Console.ReadLine();
 
                 switch (choice) 
@@ -155,49 +155,53 @@ namespace PotatisGaming2025
                         {
                             playerMana -= manaCost;
                             enemyHP -= playerDamage;
-                            Console.WriteLine($"Du kastar Potatobolt och använder {manaCost} mana. Fiendens HP är nu {enemyHP}.");
+                            Console.WriteLine($"\nDu kastar Potatobolt och använder {manaCost} mana. Fiendens HP är nu {enemyHP}.");
                         }
                         else
                         {
-                            Console.WriteLine("Du har inte tillräckligt med mana för att attackera. Unlucky!");
+                            Console.WriteLine("\nDu har inte tillräckligt med mana för att attackera. Unlucky!");
                             continue;
                         }
                     }
                     else
                     {
                         enemyHP -= playerDamage;
-                        Console.WriteLine($"Du kastar en fick-potatis på fienden. Fiendens HP är nu {enemyHP}.");
+                        Console.WriteLine($"\nDu kastar en fick-potatis på fienden. Fiendens HP är nu {enemyHP}.");
                     }
                     if (enemyHP > 0)
                     {
                         playerHP -= enemyDamage;
-                        Console.WriteLine($"{enemyName} attackerar och gör {enemyDamage} skada. Ditt HP är nu {playerHP}/{playerMaxHP}.");
+                        Console.WriteLine($"\n{enemyName} attackerar och gör {enemyDamage} skada. Ditt HP är nu {playerHP}/{playerMaxHP}.");
                     }
                 }
                 else if (action == "2")
                 {
                     Rest();
-                    fighting = false;
+                    if (enemyHP > 0) 
+                    {
+                        playerHP -= enemyDamage;
+                        Console.WriteLine($"\n{enemyName} attackerar medan du vilar dig och gör {enemyDamage} skada. Ditt HP är nu {playerHP}/{playerMaxHP}.");
+                    }
                 }
                 else if (action == "3")
                 {
-                    Console.WriteLine("Du springer iväg/utför en taktisk reträtt.");
+                    Console.WriteLine("\nDu springer iväg/utför en taktisk reträtt.");
                     fighting = false;
                 }
                 else 
                 {
-                    Console.WriteLine("Fel val, försökte du välja ett annat alternativ?");
+                    Console.WriteLine("\nFel val, försökte du välja ett annat alternativ?");
                 }
             }
             if (enemyHP <= 0)
             {
-                Console.WriteLine($"Du besegrade {enemyName}!");
+                Console.WriteLine($"\nDu besegrade {enemyName}!");
                 playerGold += enemyGold;
                 Console.WriteLine($"Du lootar {enemyGold} guld. Totalt guld: {playerGold}");
             }
             else if (playerHP <= 0) 
             {
-                Console.WriteLine("NOOB DOWN. Game over, better luck next time!");
+                Console.WriteLine($"\nNOOB DOWN. {playerName} the {playerClass} has died. Game over, better luck next time lol!");
             }
         }
     }
